@@ -69,7 +69,7 @@ class User extends Authenticatable
 
     public function subjects(){
         return $this->belongsToMany(Subjects::class, 'subject_users', 'user_id', 'subject_id');
-    }//変更箇所
+    }//Subjects（モデル）、subject_users（中間テーブル）→ user_id , subject_id (カラムID)
 
     // いいねしているかどうか
     public function is_Like($post_id){
