@@ -18,8 +18,8 @@ class PostComment extends Model
     ];
 
     public function post(){
-        return $this->belongsTo('App\Models\Posts\Post');
-    }
+        return $this->belongsTo('App\Models\Posts\Post','id');
+    }//多対一の「一」 主キー：'id'
 
     public function commentUser($user_id){
         return User::where('id', $user_id)->first();

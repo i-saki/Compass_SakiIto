@@ -9,13 +9,15 @@
       <div class="post_bottom_area d-flex">
         <div class="d-flex post_status">
           <div class="mr-5">
-            <i class="fa fa-comment"></i><span class=""></span>
+            <i class="fa fa-comment"></i><span class="">{{$post->commentCounts($post->id)}}</span>
+            <!-- ポストModelの commentCounts/＄引数（どの投稿か）-->
           </div>
           <div>
             @if(Auth::user()->is_Like($post->id))
-            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{$post->likeCounts($post->id)}}</span></p>
             @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $post->likeCounts($post->id) }}</span></p>
+            <!-- ポストModelの likeCounts/＄引数（どの投稿か）-->
             @endif
           </div>
         </div>
@@ -34,7 +36,19 @@
       <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
       <ul>
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+          <li class="main_categories">
+            <p>教科</p>
+            @if($category->subjects->isEmpty())
+              <p></p>
+            @else
+              <ul>
+                @foreach($category->subjects as $subject)
+                <p>参考書</p>
+                  <li>{{ $subject->subject }}</li>
+                @endforeach
+              </ul>
+            @endif
+          </li>
         @endforeach
       </ul>
     </div>

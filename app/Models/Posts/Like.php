@@ -3,6 +3,7 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Posts\Post;
 
 class Like extends Model
 {
@@ -13,7 +14,9 @@ class Like extends Model
         'like_post_id'
     ];
 
-    public function likeCounts($post_id){
-        return $this->where('like_post_id', $post_id)->get()->count();
-    }
+    public function post(){
+        return $this->belongsTo('App\Models\Posts\post','id');
+    }//多対一の「一」 主キー：'id'
+
+
 }

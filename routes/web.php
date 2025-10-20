@@ -61,6 +61,9 @@ Route::group(['middleware' => 'auth'], function(){
             Route::get('show/users', [UsersController::class, 'showUsers'])->name('user.show');
             Route::get('user/profile/{id}', [UsersController::class, 'userProfile'])->name('user.profile');
             Route::post('user/profile/edit', [UsersController::class, 'userEdit'])->name('user.edit');
+            // routes/web.php
+            Route::get('/posts', [UsersController::class, 'index'])->name('subjects.index');
+
         });
     });
 

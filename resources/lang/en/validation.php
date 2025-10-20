@@ -118,5 +118,7 @@ return [
         'over_name_kana'=> 'セイ',
         'under_name_kana'=> 'メイ',
         'birth_day'=>'生年月日',
+        'post_title'=>'タイトル',
+        'post_body'=>'投稿内容',
     ],
 ];

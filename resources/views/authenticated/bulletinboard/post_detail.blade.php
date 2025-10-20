@@ -5,15 +5,23 @@
       <div class="p-3">
         <div class="detail_inner_head">
           <div>
+          @error('post_title')
+            <p style="color:red; font-size:12px; margin:0; display:block;">{{ $message }}</p>
+          @enderror
+          @error('post_body')
+            <p style="color:red; font-size:12px; margin:0; display:block;">{{ $message }}</p>
+          @enderror
           </div>
+          @if (Auth::id() == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('本当に削除しますか？');">削除</a>
           </div>
+          @endif
         </div>
 
         <div class="contributor d-flex">
-          <p>
+          <p class=post-UserName>
             <span>{{ $post->user->over_name }}</span>
             <span>{{ $post->user->under_name }}</span>
             さん

@@ -16,8 +16,7 @@ class Subjects extends Model
     ];
 
     public function users(){
-
-    return $this->belongsToMany(User::class, 'subject_users', 'subject_id', 'user_id');
+        return $this->belongsToMany(User::class, 'subject_users', 'subject_id', 'user_id');
     }//User（モデル）、subject_users（中間テーブル）→ user_id , subject_id (カラムID)
 
 }

@@ -38,4 +38,16 @@ class UsersController extends Controller
         $user->subjects()->sync($request->subjects);
         return redirect()->route('user.profile', ['id' => $request->user_id]);
     }
+
+
+    public function index()
+    {
+        // 現在ログインしているユーザー
+        $user = Auth::user();
+
+        // ユーザーが持つ教科一覧を取得
+        $subjects = $user->subjects;
+
+        return view('/post', compact('user', 'subjects'));
+    }
 }

@@ -58,9 +58,16 @@ class PostsController extends Controller
     }
 
     public function postEdit(Request $request){
+
+        // バリデーション
+    $validated = $request->validate([
+        'post_title' => ['required', 'string', 'max:100'],
+        'post_body'  => ['required', 'string', 'max:2000'],
+    ]);
+
         Post::where('id', $request->post_id)->update([
-            'post_title' => $request->post_title,
-            'post' => $request->post_body,
+            'post_title' => $validated['post_title'],
+            'post'       => $validated['post_body'],
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
@@ -113,12 +120,11 @@ class PostsController extends Controller
         $user_id = Auth::id();
         $post_id = $request->post_id;
 
-        $like = new Like;
+       // いいね解除
+        Like::where('like_user_id', $user_id)
+            ->where('like_post_id', $post_id)
+            ->delete();
 
-        $like->where('like_user_id', $user_id)
-             ->where('like_post_id', $post_id)
-             ->delete();
-
-        return response()->json();
+        return response()->json(['status' => 'ok']);
     }
 }

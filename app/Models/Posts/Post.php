@@ -3,6 +3,7 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Posts\Like;
 
 class Post extends Model
 {
@@ -17,18 +18,27 @@ class Post extends Model
 
     public function user(){
         return $this->belongsTo('App\Models\Users\User');
-    }
+    }//多対一の「一」
+
+    public function likes(){
+        return $this->hasMany('App\Models\Posts\like','like_post_id');
+    }//多対一の「他」 主キー：'like_post_id'
 
     public function postComments(){
-        return $this->hasMany('App\Models\Posts\PostComment');
-    }
+        return $this->hasMany('App\Models\Posts\PostComment','post_id');
+    }//他対一の「他」 主キー：'post_id'
 
     public function subCategories(){
         // リレーションの定義
     }
 
+    //いいね数
+    public function likeCounts($post_id){
+        return $this->likes()->get()->count();
+    }//23のlikes()メソッド
+
     // コメント数
     public function commentCounts($post_id){
-        return Post::with('postComments')->find($post_id)->postComments();
-    }
+        return $this->postComments()->get()->count();
+    }//27のpostComments()メソッド
 }
