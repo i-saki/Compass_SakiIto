@@ -1,5 +1,11 @@
 <x-guest-layout>
   <form action="{{ route('loginPost') }}" method="POST">
+    <!-- セッション切れエラー文 -->
+      @if (session('error'))
+      <div class="alert alert-danger">
+      {{ session('error') }}
+      </div>
+      @endif
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
       <div class="border vh-50 w-25">
         <div class="w-75 m-auto pt-5">

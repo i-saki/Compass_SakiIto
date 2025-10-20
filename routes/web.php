@@ -63,4 +63,5 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('user/profile/edit', [UsersController::class, 'userEdit'])->name('user.edit');
         });
     });
+
 });
