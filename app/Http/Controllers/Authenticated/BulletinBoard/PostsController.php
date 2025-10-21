@@ -11,6 +11,7 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use Illuminate\Validation\Rule;
 use Auth;
 
 class PostsController extends Controller
@@ -45,7 +46,8 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::get();
-        return view('authenticated.bulletinboard.post_create', compact('main_categories'));
+        $sub_categories = SubCategory::get();
+        return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
     }
 
     public function postCreate(PostFormRequest $request){
@@ -76,8 +78,30 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
+
+    //メインカテゴリー
     public function mainCategoryCreate(Request $request){
+
+        $validated = $request->validate([
+            'main_category_name' => ['required', 'string', 'max:100','unique:main_categories,main_category'],
+            ]);
+
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+
+    //サブカテゴリー
+    public function subCategoryCreate(Request $request){
+
+        $validated = $request->validate([
+            'main_category_id' => ['required', 'exists:main_categories,id'],
+            'sub_category_name' => ['required', 'string', 'max:100','unique:sub_categories,sub_category'],
+        ]);
+
+        SubCategory::create([
+            'sub_category' => $request->sub_category_name,
+            'main_category_id'  => $request->main_category_id,
+        ]);
         return redirect()->route('post.input');
     }
 

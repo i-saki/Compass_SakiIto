@@ -184,6 +184,7 @@ li {
   justify-content: space-between;
 }
 
+
 /* 掲示板 コメント */
 .comment_container {
   background: #FFF;
@@ -222,12 +223,26 @@ li {
   color: #FFF;
 }
 
-.category_btn {
+.posts-good-mine {
+  display: flex;
+}
+
+.category_btn_good {
+  flex: 1;
+  font-size: 12px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background: #e38eab;
+  color: #FFF;
+}
+
+.category_btn_mine {
+  flex: 1;
   font-size: 12px;
   border-radius: 5px;
-  padding: 0 5px;
   border: none;
-  background: #999;
+  background: #eabc5d;
   color: #FFF;
 }
 
@@ -236,6 +251,51 @@ li {
   list-style: none;
   cursor: pointer;
 }
+
+/* 掲示板　投稿 */
+.posts-ber-btn-container {
+  margin-bottom: 20px;
+  width: 100%;
+
+}
+
+
+.posts-ber-btn {
+  display: block;
+  /* aタグをブロック要素にする → 幅指定が効く */
+  background-color: #05aad2;
+  color: #fff;
+  width: 100%;
+  font-size: 12px;
+  padding: 5px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.keyword-search {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.keyword-ber {
+
+  border-radius: 5px 0 0 5px;
+}
+
+.btn-search {
+  background-color: #05aad2;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: #fff;
+  padding: 5px;
+  font-size: 12px;
+}
+
+
+
+
 
 /* ユーザー検索 */
 .reserve_users_area {

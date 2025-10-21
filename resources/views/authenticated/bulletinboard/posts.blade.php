@@ -26,33 +26,21 @@
     @endforeach
   </div>
   <div class="other_area border w-25">
-    <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
+    <div class="border m-4 ">
+      <div class="posts-ber-btn-container">
+        <a href="{{ route('post.input') }}" class="posts-ber-btn">投稿</a>
       </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
-        @foreach($categories as $category)
-          <li class="main_categories">
-            <p>教科</p>
-            @if($category->subjects->isEmpty())
-              <p></p>
-            @else
-              <ul>
-                @foreach($category->subjects as $subject)
-                <p>参考書</p>
-                  <li>{{ $subject->subject }}</li>
-                @endforeach
-              </ul>
-            @endif
-          </li>
-        @endforeach
-      </ul>
+      <div class="keyword-search">
+        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest" class="keyword-ber">
+        <input type="submit" value="検索" form="postSearchRequest" class="btn-search">
+      </div>
+      <div class="posts-good-mine">
+        <input type="submit" name="like_posts" class="category_btn_good" value="いいねした投稿" form="postSearchRequest">
+        <input type="submit" name="my_posts" class="category_btn_mine" value="自分の投稿" form="postSearchRequest">
+      </div>
     </div>
+
   </div>
-  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
+  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"> </form>
 </div>
 </x-sidebar>
