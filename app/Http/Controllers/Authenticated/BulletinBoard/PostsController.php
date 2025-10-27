@@ -12,7 +12,9 @@ use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Auth;
+
 
 class PostsController extends Controller
 {
@@ -55,6 +57,10 @@ class PostsController extends Controller
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
+        ]);
+        DB::table('post_sub_categories')->insert([
+            'post_id'=>$post->id,
+            'sub_category_id'=>$request->post_category_id,
         ]);
         return redirect()->route('post.show');
     }

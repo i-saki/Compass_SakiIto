@@ -29,6 +29,7 @@ class Post extends Model
     }//他対一の「他」 主キー：'post_id'
 
     public function subCategories(){
+        return $this->belongsToMany('App\Models\Categories\SubCategory', 'post_sub_categories', 'post_id', 'sub_category_id');
         // リレーションの定義
     }
 

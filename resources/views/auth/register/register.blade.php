@@ -65,9 +65,9 @@
           <label style="font-size:13px">その他</label>
         </div>
         <div class="mt-3">
-          @error('birth_day')
+        @error('birth_day')
           <p style="color:red; font-size:12px; margin:0;">{{ $message }}</p>
-          @enderror
+        @enderror
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
           <select class="old_year" name="old_year">
             <option value="none">-----</option>
