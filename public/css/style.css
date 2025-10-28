@@ -337,3 +337,36 @@ li {
 .subject_inner {
   display: none;
 }
+
+.hidden {
+  display: none;
+}
+
+.dropdown-category {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  transform: rotate(90deg);
+  /* 回転アニメーション */
+}
+
+/* 開いた状態の矢印 */
+.dropdown-category.active .arrow {
+  transform: rotate(270deg);
+  /* 上向きに回転 */
+}
+
+.sub-category-list {
+  margin-left: 20px;
+  padding: 0 5px;
+}
+
+.sub-category-list li {
+  margin: 0;
+}

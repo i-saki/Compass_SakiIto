@@ -39,5 +39,5 @@
         <script src="{{ asset('js/bulletin.js') }}" rel="stylesheet"></script>
         <script src="{{ asset('js/user_search.js') }}" rel="stylesheet"></script>
         <script src="{{ asset('js/calendar.js') }}" rel="stylesheet"></script>
-    </body>
+        <script src="{{ asset('js/dropdown.js') }}"></script>
 </html>

@@ -24,12 +24,22 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new Post;
         if(!empty($request->keyword)){
+            //メモする！しらべる
+            $MathSubCategory=SubCategory::where('sub_category',$request->keyword)->first();
+            if($MathSubCategory){
+                $postIDs=DB::table('post_sub_categories')->where('sub_category_id',$MathSubCategory->id)->pluck('post_id');
+                $posts = Post::with('user', 'postComments')->whereIn('id',$postIDs)->get();
+            }else{
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
-        }else if($request->category_word){
-            $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            }
+        }else if($request->category_word){//　category_word＝$sub->sub_category
+            //$sub_category = $request->category_word;直した
+            $sub_category=SubCategory::where('sub_category',$request->category_word)->first();
+            $postIDs=DB::table('post_sub_categories')->where('sub_category_id',$sub_category->id)->pluck('post_id');
+            $posts = Post::with('user', 'postComments')->whereIn('id',$postIDs)->get();
+
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -108,6 +118,7 @@ class PostsController extends Controller
             'sub_category' => $request->sub_category_name,
             'main_category_id'  => $request->main_category_id,
         ]);
+
         return redirect()->route('post.input');
     }
 

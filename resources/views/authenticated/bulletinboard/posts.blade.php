@@ -40,6 +40,26 @@
         <input type="submit" name="like_posts" class="category_btn_good" value="いいねした投稿" form="postSearchRequest">
         <input type="submit" name="my_posts" class="category_btn_mine" value="自分の投稿" form="postSearchRequest">
       </div>
+      <div class="category_search_container">
+        <p class="category_search mt-3">カテゴリー検索</p>
+        @foreach($categories as $main_category)
+          {{-- メインカテゴリー部分 --}}
+          <div class="dropdown-category">{{ $main_category->main_category }}
+            <span class="arrow">＞</span>
+          </div>
+            {{-- サブカテゴリー一覧 --}}
+            <ul class="sub-category-list hidden">
+              @foreach($main_category->subCategories as $sub)
+                <li>
+                  <a href="{{ route('post.show',['category_word' =>$sub->sub_category]) }}">{{ $sub->sub_category }}</a>
+                  <!-- $sub->sub_category を　category_word　に代入している-->
+                </li>
+              @endforeach
+            </ul>
+        @endforeach
+
+
+      </div>
     </div>
 
   </div>
