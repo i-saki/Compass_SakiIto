@@ -43,8 +43,9 @@
       </div>
       <div>
         @if($user->role == 4)
+        <span>選択科目 :</span>
           @foreach($user->subjects as $subject)
-          <span>選択科目 : {{ $subject->subject }}</span>
+           <span>{{ $subject->subject }}</span>
           @endforeach
         @endif
       </div>
@@ -92,9 +93,9 @@
           <div class="selected_engineer">
             <label>選択科目</label>
             <div class="subject_checkboxes">
-              <label><input type="checkbox" name="subject[]" value="1"> 国語</label>
-              <label><input type="checkbox" name="subject[]" value="2"> 数学</label>
-              <label><input type="checkbox" name="subject[]" value="3"> 英語</label>
+              <label><input type="checkbox" name="subject[]" value="1" form="userSearchRequest"> 国語</label>
+              <label><input type="checkbox" name="subject[]" value="2" form="userSearchRequest"> 数学</label>
+              <label><input type="checkbox" name="subject[]" value="3" form="userSearchRequest"> 英語</label>
             </div>
           </div>
         </div>
@@ -106,7 +107,9 @@
         <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
     </div>
-    <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>
+    <form action="{{ route('user.show') }}" method="get" id="userSearchRequest">
+      <!-- これはformタグです。 どこに送るのかを示してくれている。ルートへ送る。これがあるおかげで、上記たちのformが機能している-->
+    </form>
   </div>
 </div>
 </x-sidebar>
