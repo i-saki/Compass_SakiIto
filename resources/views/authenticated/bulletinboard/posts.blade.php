@@ -50,6 +50,7 @@
             {{-- サブカテゴリー一覧 --}}
             <ul class="sub-category-list hidden">
               @foreach($main_category->subCategories as $sub)
+              <!-- subCategoriesというリレーション↑を組んでいる確認 -->
                 <li>
                   <a href="{{ route('post.show',['category_word' =>$sub->sub_category]) }}">{{ $sub->sub_category }}</a>
                   <!-- $sub->sub_category を　category_word　に代入している-->
@@ -57,12 +58,8 @@
               @endforeach
             </ul>
         @endforeach
-
-
       </div>
     </div>
-
   </div>
-  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"> </form>
 </div>
 </x-sidebar>

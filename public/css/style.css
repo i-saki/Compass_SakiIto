@@ -324,7 +324,6 @@ li {
 }
 
 .search_conditions_inner {
-  display: none;
   background: #FFF;
 }
 
@@ -347,6 +346,7 @@ li {
   justify-content: space-between;
   cursor: pointer;
   margin-top: 10px;
+  border-bottom: 1px solid #999;
 }
 
 .arrow {
@@ -359,14 +359,27 @@ li {
 /* 開いた状態の矢印 */
 .dropdown-category.active .arrow {
   transform: rotate(270deg);
+  padding: 5px;
   /* 上向きに回転 */
 }
 
 .sub-category-list {
-  margin-left: 20px;
+  margin-left: 5px;
   padding: 0 5px;
+
 }
 
 .sub-category-list li {
-  margin: 0;
+  margin: 10px;
+  margin-right: 30px;
+  font-size: 12px;
+  border-bottom: 1px solid #999;
+
+}
+
+
+.subject_checkboxes {
+  display: flex;
+  flex-direction: column;
+  /* 縦方向に配置 */
 }
